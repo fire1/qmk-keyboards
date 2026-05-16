@@ -1,0 +1,19 @@
+# Lily58 rules.mk
+
+MCU = atmega32u4
+BOOTLOADER = caterina
+
+BOOTMAGIC_ENABLE = no
+MOUSEKEY_ENABLE = yes
+EXTRAKEY_ENABLE = yes
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+NKRO_ENABLE = no
+BACKLIGHT_ENABLE = no
+RGBLIGHT_ENABLE = yes
+SWAP_HANDS_ENABLE = no
+SPLIT_KEYBOARD = yes
+LTO_ENABLE = yes
+TAP_DANCE_ENABLE = no
+
+LDFLAGS += -Wl,--wrap=ws2812_set_color -Wl,--wrap=ws2812_set_color_all
