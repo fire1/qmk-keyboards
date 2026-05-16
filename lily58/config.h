@@ -15,6 +15,6 @@
 
 /* Per-half LED wire order: see lily58.c (ws2812_set_color). */
 
-/* Base-layer snake: warm orange (tuned; 21 too red, 32 is the sweet spot). */
-#    define HSV_SNAKE_BASE 32, 255, 255
+/* Base-layer snake: warm orange (requested color: 19, 255, 170). */
+#    define HSV_SNAKE_BASE 19, 255, 170
 #endif

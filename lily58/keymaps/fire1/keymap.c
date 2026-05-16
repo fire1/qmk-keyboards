@@ -95,6 +95,7 @@ void keyboard_post_init_user(void) {
     rgblight_enable();
     rgblight_mode(RGBLIGHT_MODE_SNAKE);
     rgblight_sethsv(HSV_SNAKE_BASE);
+    rgblight_set_speed_noeeprom(RGBLIGHT_DEFAULT_SPD);
     set_layer_color(get_highest_layer(layer_state));
 #endif
 }
