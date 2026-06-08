@@ -8,8 +8,8 @@
 #ifdef OLED_ENABLE
 #    define OLED_DISPLAY_128X32
 #    define OLED_FONT_H "lib/font.c"
-/* Keep the panel on; drawing is event-driven in lib/main.c (no periodic full redraw). */
-#    define OLED_DISABLE_TIMEOUT
+/* Turn display off after 1 min idle; QMK wakes it on key/encoder/joystick activity. */
+#    define OLED_TIMEOUT 60000
 /* Fail fast on I2C errors so matrix scanning is not blocked for 100 ms (QMK default). */
 #    define OLED_I2C_TIMEOUT 5
 /* AVR: bus speed via F_SCL (100 kHz is more tolerant of wiring/noise than 400 kHz). */
