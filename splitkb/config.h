@@ -8,9 +8,16 @@
 #ifdef OLED_ENABLE
 #    define OLED_DISPLAY_128X32
 #    define OLED_FONT_H "lib/font.c"
-/* Built-in OLED timeout blanks the SSD1306 after 60s with no matrix activity; drawing
- * animations does not extend it. Prefer always-on unless you explicitly want standby. */
+/* Keep the panel on; drawing is event-driven in lib/main.c (no periodic full redraw). */
 #    define OLED_DISABLE_TIMEOUT
+/* Fail fast on I2C errors so matrix scanning is not blocked for 100 ms (QMK default). */
+#    define OLED_I2C_TIMEOUT 5
+/* AVR: bus speed via F_SCL (100 kHz is more tolerant of wiring/noise than 400 kHz). */
+#    define F_SCL 100000UL
+/* oled_task_kb tick only; actual pixels are written when state changes, not every tick. */
+#    define OLED_UPDATE_INTERVAL 50
+/* One dirty OLED block per main-loop iteration — spreads I2C across scans. */
+#    define OLED_UPDATE_PROCESS_LIMIT 1
 #endif
 
 #define TAPPING_TERM 175

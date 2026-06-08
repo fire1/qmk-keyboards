@@ -1,5 +1,24 @@
 // ani.c — replaces all kpr_* constants and setOledKeymap
 
+// kbr_full layout (OLED rotation 270, max 5 chars/line):
+//   row 11: 0x86 0x87 0x88 0x89 0xFF
+//   row 12: 0xA6 0xA7 0xA8 0xA9
+#define KBR_LAST_ROW_START 5
+#define KBR_LAST_ROW_LINE  (KBR_POSITION_ROW + 1)
+
+static void drawKbrGlyph(uint8_t index, char ch) {
+    uint8_t row = KBR_POSITION_ROW;
+    uint8_t col = KBR_POSITION_COL + index;
+
+    if (index >= KBR_LAST_ROW_START) {
+        row = KBR_LAST_ROW_LINE;
+        col = KBR_POSITION_COL + (index - KBR_LAST_ROW_START);
+    }
+
+    oled_set_cursor(col, row);
+    oled_write_char(ch, false);
+}
+
 // All distinct char values used by the animation
 static const char PROGMEM kpr_chars[] = {
     0xC6, // 0: tl1
